@@ -1,7 +1,13 @@
 package com.toDoList.entity;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "todos")
@@ -10,11 +16,29 @@ public class ToDoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String nome;
+
+
     private String descricao;
+
+
     private Boolean realizado;
+
+
     private int prioridade;
 
+    public ToDoEntity() {
+
+    }
+
+    public ToDoEntity(String nome, String descricao, Boolean realizado, int prioridade) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.realizado = realizado;
+        this.prioridade = prioridade;
+    }
 
     public Long getId() {
         return id;
